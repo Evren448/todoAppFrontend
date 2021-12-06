@@ -1,0 +1,204 @@
+<div class="modal fade" id="userSaveModal" tabIndex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #f="ngForm" (ngSubmit)="f.form.valid && saveUser()">
+        <div class="modal-header">
+          <h5 class="modal-title">Users Details</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            <strong>Error!</strong> {{ errorMessage }}
+          </div>
+
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              class="form-control"
+              [(ngModel)]="user.fullName"
+              #fullName="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !fullName.valid">
+              >Full Name is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              [(ngModel)]="user.username"
+              #username="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !username.valid">
+              Username required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              [(ngModel)]="user.password"
+              #password="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !password.valid">
+              Password Time required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select
+              class="form-control"
+              id="role"
+              name="role"
+              [(ngModel)]="user.role"
+              #role="ngModel"
+              required
+            >
+              <option disabled>Select Role</option>
+              <option *ngFor="let role of roleList">{{ role }}</option>
+            </select>
+
+            <!-- <input
+                type="text"
+                id="role"
+                name="role"
+                class="form-control"
+                [(ngModel)]="user.role"
+                #role = "ngModel"
+                required
+              /> -->
+            <div class="alert-danger" *ngIf="f.submitted && !role.valid">
+              role is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+            Close
+          </button>
+          <button class="btn btn-primary" type="submit">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="userUpdateModal" tabIndex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #f="ngForm" (ngSubmit)="f.form.valid && updateUser()">
+        <div class="modal-header">
+          <h5 class="modal-title">Users Details</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            <strong>Error!</strong> {{ errorMessage }}
+          </div>
+
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              class="form-control"
+              [(ngModel)]="user.fullName"
+              #fullName="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !fullName.valid">
+              >Full Name is required.
+            </div>
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              [(ngModel)]="user.username"
+              #username="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !username.valid">
+              Username required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              [(ngModel)]="user.password"
+              #password="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !password.valid">
+              Password Time required.
+            </div>
+          </div> -->
+
+          <div class="form-group">
+            <label for="role">Role</label>
+
+            <select
+              class="form-control"
+              id="role"
+              name="role"
+              [(ngModel)]="user.role"
+              #role="ngModel"
+              required
+            >
+              <option disabled>Select Role</option>
+              <option *ngFor="let role of roleList">{{ role }}</option>
+            </select>
+
+            <!-- <input
+                type="text"
+                id="role"
+                name="role"
+                class="form-control"
+                [(ngModel)]="user.role"
+                #role = "ngModel"
+                required
+              /> -->
+            <div class="alert-danger" *ngIf="f.submitted && !role.valid">
+              role is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+            Close
+          </button>
+          <button class="btn btn-primary" type="submit">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="pt-5">
+  
+      <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+      </div>
+  
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+  
+            <div class="col-4">
+              <h3>{{this.user.fullName}} - Todo's</h3>
+            </div>
+
+            <div class="col-4 d-flex justify-content-around">
+              <p>Filter Type</p>
+              <select [(ngModel)]="filterType" (ngModelChange)="filterChange()" id="selectid">
+              
+                <option disabled>Select Filter</option>
+                <option value="FDateASC">Finish Date ASC </option>
+                <option value="FDateDESC" >Finish Date DESC </option>
+              </select> 
+          </div>
+  
+            <div class="col-4 text-end">
+              <button class="btn btn-primary" (click)="createTodoRequest()">Create a Todo</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Description</th>
+              <th scope="col">Start Time</th>
+              <th scope="col">Finish Time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of todoList; index as ind">
+              <th scope="row">{{ind + 1}}</th>
+              <td>{{item.description}}</td>
+              <td>{{item.createdDate | date}}</td>
+              <td>{{item.fdate | date}}</td>
+              <td>{{item.status}}</td>
+              <td>
+                <button class="btn btn-primary me-1" (click)="editTodoRequest(item)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteTodo(item,ind)">Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <app-todo-modal [todo]="selectedTodo" (save)="saveTodoWatcher($event)" ></app-todo-modal>
